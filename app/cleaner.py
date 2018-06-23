@@ -39,10 +39,20 @@ def code_cleaner(filename):
 		print("Sorry, but no such file exists in your current working directory")
 
 def code_execute(filename):
-	compile_command = "gcc " + filename + " -o " + filename[0:(len(filename)-2)]	#Command for compiling with gcc along with filename and executable name
-	os.system(compile_command)		#Running the above command from script to compile the code
-	exec_file = "./"+filename[0:(len(filename)-2)]	#To execute file
-	os.system(exec_file)
+	find = filename.split(".")
+	#print(find)
+	if(find[1] == 'c'):
+		compile_command = "gcc " + filename + " -o " + filename[0:(len(filename)-2)] + "_c"	#Command for compiling with gcc along with filename and executable name
+		os.system(compile_command)		#Running the above command from script to compile the code
+		exec_file = "./"+filename[0:(len(filename)-2)] + "_c"	#To execute file
+		os.system(exec_file)
+	elif(find[1] == "cpp"):
+		compile_command = "gcc " + filename + " -o " + filename[0:(len(filename)-4)] + "_cpp"	#Command for compiling with gcc along with filename and executable name
+		os.system(compile_command)		#Running the above command from script to compile the code
+		exec_file = "./"+filename[0:(len(filename)-4)]+"_cpp"	#To execute file
+		os.system(exec_file)
+	else:
+		print("Sorry, but can't execute the your " + find[1] + " code mate! :(")
 
 def syntax_lookup(user_choice, user_search, user_language):
 	syntax = syntaxdb.Syntaxdb(choice = user_choice, search_query = user_search, language = user_language)
