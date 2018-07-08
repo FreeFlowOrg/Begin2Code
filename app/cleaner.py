@@ -13,6 +13,9 @@ def code_cleaner(filename):
 		count_open = 0
 		for line in main_file_ptr:
 			spaces = '\t'*count		#Giving count number of tabs from next line onwards
+			tab_count = line.count('\t')
+			line = line.replace('\t'*tab_count,'')
+			print(tab_count)		
 			if "{" in line:
 				count+=1	#incrementing count whenever "{"
 				#print count
@@ -22,6 +25,7 @@ def code_cleaner(filename):
 				spaces = '\t'*count
 				count_close +=1
 				#print count
+
 			temp_file_ptr.write(spaces)	#First writing spaces into every line
 			temp_file_ptr.write(line)	#Then copy contents of every line from main code
 
